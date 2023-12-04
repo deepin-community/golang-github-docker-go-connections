@@ -1,0 +1,3 @@
+version=4
+ https://github.com/docker/go-connections/tags \
+ .*/v?(\d[\d\.]+)\.tar\.gz
