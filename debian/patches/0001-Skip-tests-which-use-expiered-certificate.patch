@@ -1,0 +1,28 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Mon, 5 Apr 2021 19:38:47 +0800
+Subject: Skip tests which use expiered certificate
+
+---
+ tlsconfig/config_test.go | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tlsconfig/config_test.go b/tlsconfig/config_test.go
+index 345cbe7..aa94f02 100644
+--- a/tlsconfig/config_test.go
++++ b/tlsconfig/config_test.go
+@@ -202,6 +202,7 @@ func TestConfigServerTLSClientCASet(t *testing.T) {
+ // Exclusive root pools determines whether the CA pool will be a union of the system
+ // certificate pool and custom certs, or an exclusive or of the custom certs and system pool
+ func TestConfigServerExclusiveRootPools(t *testing.T) {
++	t.Skip("certificate is expired")
+ 	key, cert := getCertAndKey()
+ 	ca := getMultiCert()
+ 
+@@ -562,6 +563,7 @@ func TestConfigClientTLSNotSetWithInvalidPassphrase(t *testing.T) {
+ // Exclusive root pools determines whether the CA pool will be a union of the system
+ // certificate pool and custom certs, or an exclusive or of the custom certs and system pool
+ func TestConfigClientExclusiveRootPools(t *testing.T) {
++	t.Skip("certificate is expired")
+ 	ca := getMultiCert()
+ 
+ 	caBytes, err := ioutil.ReadFile(ca)
